@@ -11,13 +11,20 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .pink-doraemon { position: fixed; z-index: 4; top: 24vh; left: 5vw; width: clamp(66px, 9vw, 104px); height: auto; pointer-events: none; filter: drop-shadow(0 8px 10px #bd638833); animation: doraemon-wander 28s ease-in-out infinite; }
+    .pink-doraemon { position: fixed; z-index: 4; top: 24vh; left: 5vw; width: clamp(66px, 9vw, 104px); height: auto; pointer-events: auto; cursor: pointer; touch-action: manipulation; filter: drop-shadow(0 8px 10px #bd638833); animation: doraemon-wander 28s ease-in-out infinite; transform-origin: center; transition: filter .2s ease; }
     .pink-doraemon .body { fill: #f28db7; stroke: #8d4967; stroke-width: 2.2; }
     .pink-doraemon .light { fill: #fff4f8; stroke: #8d4967; stroke-width: 1.8; }
     .pink-doraemon .detail { fill: #bd6388; stroke: #8d4967; stroke-width: 1.6; }
     .pink-doraemon .line { fill: none; stroke: #593b4b; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     .pink-doraemon .eye { fill: white; stroke: #593b4b; stroke-width: 1.5; }
-    .pink-doraemon .pupil { fill: #593b4b; }
+    .pink-doraemon .pupil { fill: #593b4b; transition: transform .12s ease-out; }
+    .pink-doraemon:hover, .pink-doraemon:focus-visible { filter: drop-shadow(0 10px 14px #bd638866); animation-play-state: paused; outline: none; }
+    .pink-doraemon:hover { scale: 1.12; }
+    .pink-doraemon:focus-visible { scale: 1.1; }
+    .pink-doraemon.is-happy { animation: doraemon-giggle .55s ease-in-out 3; }
+    .pink-doraemon .cheek { fill: #f28db7; opacity: .7; }
+    .pink-doraemon .heart-pop { opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+    .pink-doraemon.is-happy .heart-pop { animation: heart-pop .9s ease-out forwards; }
     @keyframes doraemon-wander {
       0%, 100% { transform: translate(0, 0) rotate(-5deg); }
       20% { transform: translate(68vw, 8vh) rotate(7deg); }
@@ -25,7 +32,9 @@
       70% { transform: translate(9vw, 56vh) scaleX(-1) rotate(6deg); }
       88% { transform: translate(4vw, 14vh) rotate(-3deg); }
     }
-    @media (prefers-reduced-motion: reduce) { .pink-doraemon { animation: none; top: auto; left: auto; right: 16px; bottom: 14px; } }
+    @keyframes doraemon-giggle { 0%,100% { rotate: 0deg; } 25% { rotate: -13deg; } 75% { rotate: 13deg; } }
+    @keyframes heart-pop { 0% { opacity: 0; transform: translateY(8px) scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-30px) scale(1.2); } }
+    @media (prefers-reduced-motion: reduce) { .pink-doraemon { animation: none; top: auto; left: auto; right: 16px; bottom: 14px; } .pink-doraemon.is-happy .heart-pop { animation-duration: .01ms; } }
   </style>
 </head>
 <body>
@@ -49,19 +58,44 @@
   <footer class="footer">made with lots of love, just for Daraemoon ♡</footer>
   <div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-label="Memory viewer"><div class="modal-inner"><button class="modal-close" id="modalClose" aria-label="Close memory">×</button><div id="modalMedia"></div></div></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <svg class="pink-doraemon" viewBox="0 0 100 112" role="img" aria-label="A little pink Doraemon wandering around the page" xmlns="http://www.w3.org/2000/svg">
-    <title>Pink Doraemon</title>
+  <svg class="pink-doraemon" viewBox="0 0 100 112" role="button" tabindex="0" aria-label="Pink Doraemon. Move your cursor over me or click for a surprise!" xmlns="http://www.w3.org/2000/svg">
+    <title>Pink Doraemon — hover to make him follow your cursor, click for a surprise</title>
     <ellipse class="body" cx="50" cy="61" rx="34" ry="39"/>
     <ellipse class="light" cx="50" cy="68" rx="25" ry="27"/>
     <circle class="body" cx="50" cy="31" r="27"/>
     <ellipse class="light" cx="50" cy="37" rx="23" ry="19"/>
     <ellipse class="eye" cx="42" cy="25" rx="6" ry="9"/><ellipse class="eye" cx="55" cy="25" rx="6" ry="9"/>
     <circle class="pupil" cx="44" cy="28" r="2"/><circle class="pupil" cx="54" cy="28" r="2"/>
+    <ellipse class="cheek" cx="34" cy="39" rx="5" ry="2.5"/><ellipse class="cheek" cx="65" cy="39" rx="5" ry="2.5"/>
     <ellipse class="detail" cx="49" cy="36" rx="4" ry="3.5"/><path class="line" d="M49 40v7m-13-3c3 4 7 6 13 6s10-2 13-6M28 37l14 3m-15 5 13 1m32-9-14 3m15 6-14 1"/>
     <path class="detail" d="M27 58h46v5H27z"/><circle class="detail" cx="50" cy="62" r="6"/><path class="line" d="M50 68v5"/>
     <ellipse class="light" cx="38" cy="100" rx="12" ry="6"/><ellipse class="light" cx="62" cy="100" rx="12" ry="6"/>
     <path class="line" d="M17 57l-7-3m7 11H8m75-8 7-3m-7 11h9M34 88l-8 7m40-7 8 7"/>
+    <text class="heart-pop" x="66" y="21" fill="#e88eae" font-size="17">♥</text>
   </svg>
+  <script>
+    (() => {
+      const doraemon = document.querySelector('.pink-doraemon');
+      const pupils = doraemon.querySelectorAll('.pupil');
+      const lookAtPointer = (event) => {
+        const box = doraemon.getBoundingClientRect();
+        const x = Math.max(-1, Math.min(1, (event.clientX - (box.left + box.width / 2)) / (box.width / 2)));
+        const y = Math.max(-1, Math.min(1, (event.clientY - (box.top + box.height / 2)) / (box.height / 2)));
+        pupils.forEach((pupil) => pupil.style.transform = `translate(${x * 1.5}px, ${y * 1.2}px)`);
+      };
+      window.addEventListener('pointermove', lookAtPointer, { passive: true });
+      const makeHappy = () => {
+        doraemon.classList.remove('is-happy');
+        void doraemon.getBoundingClientRect();
+        doraemon.classList.add('is-happy');
+        window.setTimeout(() => doraemon.classList.remove('is-happy'), 1900);
+      };
+      doraemon.addEventListener('click', makeHappy);
+      doraemon.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); makeHappy(); }
+      });
+    })();
+  </script>
   <script src="script.js" defer></script>
 </body>
 </html>
