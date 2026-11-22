@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .pink-doraemon { position: fixed; z-index: 20; left: 18px; top: 42vh; width: clamp(78px, 8vw, 112px); height: auto; cursor: pointer; touch-action: manipulation; filter: drop-shadow(0 8px 12px #bd638855); transform-origin: center; transition: left .8s cubic-bezier(.22,1,.36,1), top .8s cubic-bezier(.22,1,.36,1), scale .2s ease, filter .2s ease; }
+    .pink-doraemon { position: fixed; z-index: 20; left: 18px; top: 42vh; width: clamp(78px, 8vw, 112px); height: auto; cursor: pointer; touch-action: manipulation; filter: drop-shadow(0 8px 12px #bd638866); }
     .pink-doraemon.following { transition: left .12s linear, top .12s linear, scale .2s ease, filter .2s ease; }
     .pink-doraemon:hover, .pink-doraemon:focus-visible { scale: 1.09; filter: drop-shadow(0 11px 16px #bd638866); outline: none; }
     .pink-doraemon .head { fill: #f28db7; stroke: #8d4967; stroke-width: 2.4; }
@@ -27,43 +27,53 @@
     .pink-doraemon.is-happy .heart-pop { animation: heart-pop .85s ease-out forwards; }
     @keyframes doraemon-giggle { 0%,100% { rotate: 0deg; } 25% { rotate: -10deg; } 75% { rotate: 10deg; } }
     @keyframes heart-pop { 0% { opacity: 0; transform: translateY(8px) scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-28px) scale(1.2); } }
-    @media (max-width: 700px) { .pink-doraemon { left: 10px; top: 48vh; width: 72px; } }
-    @media (prefers-reduced-motion: reduce) { .pink-doraemon, .pink-doraemon.following { transition-duration: .01ms; } .pink-doraemon.is-happy { animation: none; } }
+
+    .ice-cream-dae { position: absolute; right: clamp(18px, 7vw, 96px); bottom: 38px; width: clamp(88px, 10vw, 140px); z-index: 4; filter: drop-shadow(0 16px 18px #bd638833); animation: iceFloat 3.2s ease-in-out infinite; }
+    .ice-cream-dae .scoop { transform-origin: center; animation: scoopWiggle 2.4s ease-in-out infinite; }
+    .ice-cream-dae .sparkle { fill: #fff; transform-origin: center; animation: sparkle 1.8s ease-in-out infinite; }
+    .ice-cream-dae .sparkle.delay { animation-delay: .7s; }
+    @keyframes iceFloat { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+    @keyframes scoopWiggle { 0%,100% { transform: rotate(-1deg); } 50% { transform: rotate(2deg); } }
+    @keyframes sparkle { 0%,100% { opacity: .35; transform: scale(.65) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
+    @media (max-width: 700px) { .pink-doraemon { left: 10px; top: 48vh; width: 72px; } .ice-cream-dae { right: 12px; bottom: 18px; width: 88px; } }
+    @media (prefers-reduced-motion: reduce) { .pink-doraemon, .pink-doraemon.following { transition-duration: .01ms; } .pink-doraemon.is-happy { animation: none; } .ice-cream-dae, .ice-cream-dae .scoop, .ice-cream-dae .sparkle { animation: none; } }
   </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-  <header class="topbar"><a class="brand" href="#home">for <span>Daraemoon</span> ♡</a><nav aria-label="Main navigation"><a href="#letter">A little letter</a><a href="#memories">Memories</a><a href="#reasons">18 reasons</a></nav></header>
+  <header class="topbar" aria-label="Daraemoon"><a class="brand" href="#home">for <span>Daraemoon</span> ♡</a></header>
   <main>
-    <section class="hero" id="home"><div class="hero-content"><div class="eyebrow">A tiny surprise, made just for you</div><h1>Happy birthday,<br><em>Daraemoon</em></h1><p class="hero-sub">to my favorite moon in the whole sky ♡</p><div class="envelope-wrap"><button class="envelope" id="envelope" aria-label="Open your birthday letter" aria-expanded="false"><span class="env-back"></span><span class="env-letter">A little love note<br>for you ♡</span><span class="env-front"></span><span class="env-flap"></span><span class="env-seal">♡</span></button></div><p class="open-hint" id="openHint">Tap the envelope to open your letter</p><a class="button hidden" id="startButton" href="#letter">Come on in <span aria-hidden="true">→</span></a></div><div class="scroll-note">made with love &amp; a little sparkle</div></section>
-    <section class="letter-section" id="letter"><div class="section-inner"><div class="section-heading"><div class="eyebrow">from me to you</div><h2>A little letter</h2><p>Because you deserve more than just a birthday text.</p></div><article class="letter-card"><div class="salutation">Dear Jinn Darae,</div><p>Happy 18th birthday to the one and only Daraemoon! I wanted to make you a little corner of the internet that feels as lovely and special as you are.</p><p>Thank you for being my girl best friend, for all the laughs, the little moments, and for being wonderfully, completely you. I hope this new chapter brings you so much happiness, kind people, exciting adventures, and every beautiful thing your heart is wishing for.</p><p>Keep being your bright, sweet, and unforgettable self. The world is luckier with you in it, and I'm very lucky to call you my best friend.</p><p class="signature">Always cheering for you ♡</p></article></div></section>
-    <section class="memories" id="memories"><div class="section-inner"><div class="section-heading"><div class="eyebrow">little moments, big feelings</div><h2>Our memory garden</h2><p>A few favorite snapshots of a person who makes life sweeter.</p></div><div class="gallery" id="gallery">
-      <button class="memory-card" data-media="images/memory-1.jpg" data-kind="image" aria-label="Open memory one"><span class="photo-placeholder">♡</span><span class="memory-caption"><strong>That lovely smile</strong><span>one of my favorite views</span></span></button>
-      <button class="memory-card" data-media="images/memory-2.jpg" data-kind="image" aria-label="Open memory two"><span class="photo-placeholder">✿</span><span class="memory-caption"><strong>Our little moments</strong><span>the ones I keep close</span></span></button>
-      <button class="memory-card" data-media="images/memory-3.mp4" data-kind="video" aria-label="Play memory three"><span class="photo-placeholder">▶</span><span class="memory-caption"><strong>A happy little clip</strong><span>press to play</span></span></button>
-      <button class="memory-card" data-media="images/memory-4.jpg" data-kind="image" aria-label="Open memory four"><span class="photo-placeholder">☼</span><span class="memory-caption"><strong>Sunshine energy</strong><span>you make everything brighter</span></span></button>
-      <button class="memory-card" data-media="images/memory-5.jpg" data-kind="image" aria-label="Open memory five"><span class="photo-placeholder">♡</span><span class="memory-caption"><strong>Best friend things</strong><span>always better together</span></span></button>
-      <button class="memory-card" data-media="images/memory-6.jpg" data-kind="image" aria-label="Open memory six"><span class="photo-placeholder">✧</span><span class="memory-caption"><strong>Birthday girl</strong><span>eighteen looks lovely on you</span></span></button>
+    <section class="hero" id="home"><div class="hero-content"><div class="eyebrow">DaDaDaraemoooooooon</div><h1>Happy birthday,<br><em>Daraemoon</em></h1><p class="hero-sub">to my favorite person in the whole wide world ♡</p><a class="hero-button" href="#letter">Open my little letter <span>↓</span></a></div>
+      <svg class="ice-cream-dae" viewBox="0 0 120 150" role="img" aria-label="Cute pink ice cream cone for Dae">
+        <g class="scoop">
+          <circle cx="60" cy="48" r="36" fill="#f5a7c5" stroke="#8d4967" stroke-width="3"/>
+          <circle cx="45" cy="38" r="8" fill="#ffd5e4" opacity=".9"/><circle cx="72" cy="31" r="7" fill="#ffd5e4" opacity=".75"/><circle cx="74" cy="57" r="6" fill="#ffd5e4" opacity=".7"/>
+          <circle cx="48" cy="55" r="5" fill="#fff"/><circle cx="61" cy="66" r="4" fill="#fff"/>
+          <circle cx="60" cy="44" r="4" fill="#593b4b"/><path d="M60 47v8" stroke="#593b4b" stroke-width="2" stroke-linecap="round"/><path d="M54 55c4 4 8 4 12 0" fill="none" stroke="#593b4b" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="43" cy="48" r="4" fill="#e88eae" opacity=".75"/><circle cx="77" cy="48" r="4" fill="#e88eae" opacity=".75"/>
+        </g>
+        <path d="M30 76l30 62 30-62z" fill="#dfad70" stroke="#8d4967" stroke-width="3" stroke-linejoin="round"/><path d="M45 91l30 30M75 91l-30 30M38 106l44 0" fill="none" stroke="#c58e58" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+        <path d="M60 12c-1 8-7 11-7 11s7 1 10 8c1-8 6-11 6-11s-7-1-9-8z" fill="#fff" stroke="#8d4967" stroke-width="1.5"/>
+        <path class="sparkle" d="M18 35l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><path class="sparkle delay" d="M100 66l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+      </svg>
+    </section>
+    <section class="letter-section" id="letter"><div class="section-inner"><div class="section-heading"><div class="eyebrow">from me to you</div><h2>A little letter</h2><p>Because you deserve more than just a birthday wish.</p></div><div class="letter-card"><div class="letter-copy"><p>Hi, Darae ♡</p><p>Today is about celebrating you — your kindness, your smile, and the way you make ordinary moments feel special.</p><p>I hope this little corner of the internet makes you smile. You deserve a day as soft and sweet as you are.</p><p class="letter-sign">Always yours,</p><p class="signature">with all my love ♡</p></div></div></div></section>
+    <section class="memories" id="memories"><div class="section-inner"><div class="section-heading"><div class="eyebrow">little moments, big feelings</div><h2>Our memory garden</h2><p>A few favorite moments, kept here for you.</p></div><div class="gallery">
+      <button class="memory-card" data-media="images/memory-1.jpg" data-kind="image" aria-label="Open memory one"><span class="photo-placeholder">♡</span><span class="memory-caption"><strong>That first hello</strong><small>the start of something lovely</small></span></button>
+      <button class="memory-card" data-media="images/memory-2.jpg" data-kind="image" aria-label="Open memory two"><span class="photo-placeholder">✿</span><span class="memory-caption"><strong>Our favorite place</strong><small>where everything felt easy</small></span></button>
+      <button class="memory-card" data-media="images/memory-3.mp4" data-kind="video" aria-label="Play memory three"><span class="photo-placeholder">▶</span><span class="memory-caption"><strong>A little video</strong><small>play it and remember</small></span></button>
+      <button class="memory-card" data-media="images/memory-4.jpg" data-kind="image" aria-label="Open memory four"><span class="photo-placeholder">☼</span><span class="memory-caption"><strong>Sunshine moments</strong><small>you make every day brighter</small></span></button>
+      <button class="memory-card" data-media="images/memory-5.jpg" data-kind="image" aria-label="Open memory five"><span class="photo-placeholder">♡</span><span class="memory-caption"><strong>Best little smiles</strong><small>worth keeping forever</small></span></button>
+      <button class="memory-card" data-media="images/memory-6.jpg" data-kind="image" aria-label="Open memory six"><span class="photo-placeholder">✧</span><span class="memory-caption"><strong>Birthday magic</strong><small>today, and every day after</small></span></button>
     </div><p class="gallery-note">Your photos go here ♡ Add them in the <code>images/</code> folder and they'll appear in these frames.</p></div></section>
-    <section class="reasons" id="reasons"><div class="section-inner"><div class="section-heading"><div class="eyebrow">tap each one to reveal</div><h2>18 little things I love about you</h2><p>Some are tiny, some are huge. All of them are so very you.</p></div><div class="reason-grid" id="reasonGrid"></div></div></section>
-    <section class="compliment"><div class="compliment-box"><div class="eyebrow">a little reminder</div><h2>Need a smile?</h2><p class="compliment-text" id="complimentText" aria-live="polite">Tap the button. I have a few things to tell you ♡</p><button class="button" id="complimentButton">Tell me something sweet <span aria-hidden="true">♡</span></button></div></section>
-    <section class="finale"><div class="eyebrow">the most important part</div><h2>Happy 18th,<br><em>Jinn Darae!</em></h2><p>I hope your birthday is as soft, sweet, and wonderful as you are. Here's to all the beautiful things waiting for you. Love you lots, Daraemoon ♡</p><button class="button" id="wishButton">Send a birthday wish <span aria-hidden="true">♡</span></button></section>
+    <section class="reasons" id="reasons"><div class="section-inner"><div class="section-heading"><div class="eyebrow">tap each one to reveal</div><h2>18 little things I love about you</h2><p>Some of the reasons you're so special.</p></div><div class="reason-grid"></div></div></section>
+    <section class="compliment"><div class="compliment-box"><div class="eyebrow">a little reminder</div><h2>Need a smile?</h2><p class="compliment-text" id="complimentText" aria-live="polite">Tap the button for a tiny dose of Darae happiness.</p><button class="compliment-button" id="complimentButton">Make me smile ♡</button></div></section>
+    <section class="finale"><div class="eyebrow">the most important part</div><h2>Happy 18th,<br><em>Jinn Darae!</em></h2><p>I hope your birthday is as soft, sweet, and wonderful as you are. Here's to every moment still to come.</p><div class="finale-heart">♡</div></section>
   </main>
   <footer class="footer">made with lots of love, just for Daraemoon ♡</footer>
-  <div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-label="Memory viewer"><div class="modal-inner"><button class="modal-close" id="modalClose" aria-label="Close memory">×</button><div id="modalMedia"></div></div></div>
+  <div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-label="Memory viewer"><div class="modal-inner"><button class="modal-close" id="modalClose" aria-label="Close memory">×</button><div id="modalContent"></div></div></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <svg class="pink-doraemon" id="pinkDoraemon" viewBox="0 0 100 82" role="button" tabindex="0" aria-label="Pink Doraemon head. Click to start following the cursor." xmlns="http://www.w3.org/2000/svg">
-    <title>Pink Doraemon head — click to follow the cursor</title>
-    <circle class="head" cx="50" cy="34" r="31"/>
-    <ellipse class="face" cx="50" cy="42" rx="27" ry="20"/>
-    <ellipse class="eye" cx="42" cy="27" rx="7" ry="10"/><ellipse class="eye" cx="58" cy="27" rx="7" ry="10"/>
-    <circle class="pupil" cx="44" cy="30" r="2.2"/><circle class="pupil" cx="56" cy="30" r="2.2"/>
-    <ellipse class="cheek" cx="33" cy="43" rx="6" ry="3"/><ellipse class="cheek" cx="67" cy="43" rx="6" ry="3"/>
-    <ellipse class="nose" cx="50" cy="39" rx="4.5" ry="4"/>
-    <path class="line" d="M50 43v8m-14-5c4 5 8 7 14 7s11-2 14-7M27 38l16 4m-17 5 16-1m31-8-16 4m17 5-16-1"/>
-    <path class="collar" d="M19 60h62v7H19z"/><circle class="nose" cx="50" cy="67" r="6"/><path class="line" d="M50 72v7"/>
-    <text class="heart-pop" x="69" y="19">♥</text>
-  </svg>
+  <svg class="pink-doraemon" id="pinkDoraemon" viewBox="0 0 100 82" role="button" tabindex="0" aria-label="Pink Doraemon head. Click to start following the cursor." xmlns="http://www.w3.org/2000/svg"><title>Pink Doraemon head — click to follow the cursor</title><circle class="head" cx="50" cy="34" r="31"/><ellipse class="face" cx="50" cy="42" rx="27" ry="20"/><ellipse class="eye" cx="42" cy="27" rx="7" ry="10"/><ellipse class="eye" cx="58" cy="27" rx="7" ry="10"/><circle class="pupil" cx="44" cy="30" r="2.2"/><circle class="pupil" cx="56" cy="30" r="2.2"/><ellipse class="cheek" cx="33" cy="43" rx="6" ry="3"/><ellipse class="cheek" cx="67" cy="43" rx="6" ry="3"/><ellipse class="nose" cx="50" cy="39" rx="4.5" ry="4"/><path class="line" d="M50 43v8m-14-5c4 5 8 7 14 7s11-2 14-7M27 38l16 4m-17 5 16-1m31-8-16 4m17 5-16-1"/><path class="collar" d="M19 60h62v7H19z"/><circle class="nose" cx="50" cy="67" r="6"/><path class="line" d="M50 72v7"/><text class="heart-pop" x="69" y="19">♥</text></svg>
   <script>
     (() => {
       const doraemon = document.getElementById('pinkDoraemon');
@@ -71,53 +81,12 @@
       let following = false;
       let targetX = 18;
       let targetY = window.innerHeight * .42;
-
-      const idlePosition = () => {
-        targetX = 18;
-        targetY = window.innerHeight * .42;
-        doraemon.classList.remove('following');
-        doraemon.style.left = `${targetX}px`;
-        doraemon.style.top = `${targetY}px`;
-      };
-
-      const lookAtPointer = (event) => {
-        const box = doraemon.getBoundingClientRect();
-        const x = Math.max(-1, Math.min(1, (event.clientX - (box.left + box.width / 2)) / (box.width / 2)));
-        const y = Math.max(-1, Math.min(1, (event.clientY - (box.top + box.height / 2)) / (box.height / 2)));
-        pupils.forEach((pupil) => pupil.style.transform = `translate(${x * 1.8}px, ${y * 1.4}px)`);
-      };
-
-      const moveToPointer = (event) => {
-        if (!following) { lookAtPointer(event); return; }
-        const size = doraemon.getBoundingClientRect();
-        targetX = Math.max(8, Math.min(window.innerWidth - size.width - 8, event.clientX - size.width / 2));
-        targetY = Math.max(8, Math.min(window.innerHeight - size.height - 8, event.clientY - size.height / 2));
-        doraemon.style.left = `${targetX}px`;
-        doraemon.style.top = `${targetY}px`;
-      };
-
-      const giggle = () => {
-        doraemon.classList.remove('is-happy');
-        void doraemon.getBoundingClientRect();
-        doraemon.classList.add('is-happy');
-        setTimeout(() => doraemon.classList.remove('is-happy'), 1500);
-      };
-
-      const toggleFollowing = () => {
-        following = !following;
-        doraemon.classList.toggle('following', following);
-        doraemon.setAttribute('aria-label', following ? 'Pink Doraemon following. Click to stop.' : 'Pink Doraemon head. Click to start following the cursor.');
-        giggle();
-        if (!following) idlePosition();
-      };
-
-      window.addEventListener('pointermove', moveToPointer, { passive: true });
-      doraemon.addEventListener('click', toggleFollowing);
-      doraemon.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleFollowing(); }
-      });
-      window.addEventListener('resize', () => { if (!following) idlePosition(); });
-      idlePosition();
+      const idlePosition = () => { targetX = 18; targetY = window.innerHeight * .42; doraemon.classList.remove('following'); doraemon.style.left = `${targetX}px`; doraemon.style.top = `${targetY}px`; };
+      const lookAtPointer = (event) => { const box = doraemon.getBoundingClientRect(); const x = Math.max(-1, Math.min(1, (event.clientX - (box.left + box.width / 2)) / (box.width / 2))); const y = Math.max(-1, Math.min(1, (event.clientY - (box.top + box.height / 2)) / (box.height / 2))); pupils.forEach((pupil) => pupil.style.transform = `translate(${x * 1.8}px, ${y * 1.4}px)`); };
+      const moveToPointer = (event) => { if (!following) { lookAtPointer(event); return; } const size = doraemon.getBoundingClientRect(); targetX = Math.max(8, Math.min(window.innerWidth - size.width - 8, event.clientX - size.width / 2)); targetY = Math.max(8, Math.min(window.innerHeight - size.height - 8, event.clientY - size.height / 2)); doraemon.style.left = `${targetX}px`; doraemon.style.top = `${targetY}px`; };
+      const giggle = () => { doraemon.classList.remove('is-happy'); void doraemon.getBoundingClientRect(); doraemon.classList.add('is-happy'); setTimeout(() => doraemon.classList.remove('is-happy'), 1500); };
+      const toggleFollowing = () => { following = !following; doraemon.classList.toggle('following', following); doraemon.setAttribute('aria-label', following ? 'Pink Doraemon following. Click to stop.' : 'Pink Doraemon head. Click to start following the cursor.'); giggle(); if (!following) idlePosition(); };
+      window.addEventListener('pointermove', moveToPointer, { passive: true }); doraemon.addEventListener('click', toggleFollowing); doraemon.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventEvent(); toggleFollowing(); } }); window.addEventListener('resize', () => { if (!following) idlePosition(); }); idlePosition();
     })();
   </script>
   <script src="script.js" defer></script>
