@@ -10,12 +10,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .pink-doraemon { position: fixed; z-index: 4; top: 24vh; left: 5vw; width: clamp(66px, 9vw, 104px); height: auto; pointer-events: none; filter: drop-shadow(0 8px 10px #bd638833); animation: doraemon-wander 28s ease-in-out infinite; }
+    .pink-doraemon .body { fill: #f28db7; stroke: #8d4967; stroke-width: 2.2; }
+    .pink-doraemon .light { fill: #fff4f8; stroke: #8d4967; stroke-width: 1.8; }
+    .pink-doraemon .detail { fill: #bd6388; stroke: #8d4967; stroke-width: 1.6; }
+    .pink-doraemon .line { fill: none; stroke: #593b4b; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .pink-doraemon .eye { fill: white; stroke: #593b4b; stroke-width: 1.5; }
+    .pink-doraemon .pupil { fill: #593b4b; }
+    @keyframes doraemon-wander {
+      0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+      20% { transform: translate(68vw, 8vh) rotate(7deg); }
+      45% { transform: translate(72vw, 52vh) scaleX(-1) rotate(-4deg); }
+      70% { transform: translate(9vw, 56vh) scaleX(-1) rotate(6deg); }
+      88% { transform: translate(4vw, 14vh) rotate(-3deg); }
+    }
+    @media (prefers-reduced-motion: reduce) { .pink-doraemon { animation: none; top: auto; left: auto; right: 16px; bottom: 14px; } }
+  </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
   <header class="topbar"><a class="brand" href="#home">for <span>Daraemoon</span> ♡</a><nav aria-label="Main navigation"><a href="#letter">A little letter</a><a href="#memories">Memories</a><a href="#reasons">18 reasons</a></nav></header>
   <main>
-    <section class="hero" id="home"><div class="hero-content"><div class="eyebrow">A tiny surprise, made just for you</div><h1>Happy birthday,<br><em>Daraemoon</em></h1><p class="hero-sub">to my favorite moon in the whole sky ♡</p><div class="envelope-wrap"><button class="envelope" id="envelope" aria-label="Open your birthday letter" aria-expanded="false"><span class="env-back"></span><span class="env-letter">A little love note<br>for you ♡</span><span class="env-front"></span><span class="env-flap"></span><span class="env-seal">♡</span></button></div><p class="open-hint" id="openHint">Tap the envelope to open your letter</p><a class="button hidden" id="startButton" href="#letter">Come on in <span aria-hidden="true">↓</span></a></div><div class="scroll-note">made with love & a little sparkle</div></section>
+    <section class="hero" id="home"><div class="hero-content"><div class="eyebrow">A tiny surprise, made just for you</div><h1>Happy birthday,<br><em>Daraemoon</em></h1><p class="hero-sub">to my favorite moon in the whole sky ♡</p><div class="envelope-wrap"><button class="envelope" id="envelope" aria-label="Open your birthday letter" aria-expanded="false"><span class="env-back"></span><span class="env-letter">A little love note<br>for you ♡</span><span class="env-front"></span><span class="env-flap"></span><span class="env-seal">♡</span></button></div><p class="open-hint" id="openHint">Tap the envelope to open your letter</p><a class="button hidden" id="startButton" href="#letter">Come on in <span aria-hidden="true">→</span></a></div><div class="scroll-note">made with love &amp; a little sparkle</div></section>
     <section class="letter-section" id="letter"><div class="section-inner"><div class="section-heading"><div class="eyebrow">from me to you</div><h2>A little letter</h2><p>Because you deserve more than just a birthday text.</p></div><article class="letter-card"><div class="salutation">Dear Jinn Darae,</div><p>Happy 18th birthday to the one and only Daraemoon! I wanted to make you a little corner of the internet that feels as lovely and special as you are.</p><p>Thank you for being my girl best friend, for all the laughs, the little moments, and for being wonderfully, completely you. I hope this new chapter brings you so much happiness, kind people, exciting adventures, and every beautiful thing your heart is wishing for.</p><p>Keep being your bright, sweet, and unforgettable self. The world is luckier with you in it, and I'm very lucky to call you my best friend.</p><p class="signature">Always cheering for you ♡</p></article></div></section>
     <section class="memories" id="memories"><div class="section-inner"><div class="section-heading"><div class="eyebrow">little moments, big feelings</div><h2>Our memory garden</h2><p>A few favorite snapshots of a person who makes life sweeter.</p></div><div class="gallery" id="gallery">
       <button class="memory-card" data-media="images/memory-1.jpg" data-kind="image" aria-label="Open memory one"><span class="photo-placeholder">♡</span><span class="memory-caption"><strong>That lovely smile</strong><span>one of my favorite views</span></span></button>
@@ -26,11 +43,25 @@
       <button class="memory-card" data-media="images/memory-6.jpg" data-kind="image" aria-label="Open memory six"><span class="photo-placeholder">✧</span><span class="memory-caption"><strong>Birthday girl</strong><span>eighteen looks lovely on you</span></span></button>
     </div><p class="gallery-note">Your photos go here ♡ Add them in the <code>images/</code> folder and they'll appear in these frames.</p></div></section>
     <section class="reasons" id="reasons"><div class="section-inner"><div class="section-heading"><div class="eyebrow">tap each one to reveal</div><h2>18 little things I love about you</h2><p>Some are tiny, some are huge. All of them are so very you.</p></div><div class="reason-grid" id="reasonGrid"></div></div></section>
-    <section class="compliment"><div class="compliment-box"><div class="eyebrow">a little reminder</div><h2>Need a smile?</h2><p class="compliment-text" id="complimentText" aria-live="polite">Tap the button. I have a few things to tell you ♡</p><button class="button" id="complimentButton">Tell me something sweet <span aria-hidden="true">✧</span></button></div></section>
+    <section class="compliment"><div class="compliment-box"><div class="eyebrow">a little reminder</div><h2>Need a smile?</h2><p class="compliment-text" id="complimentText" aria-live="polite">Tap the button. I have a few things to tell you ♡</p><button class="button" id="complimentButton">Tell me something sweet <span aria-hidden="true">♡</span></button></div></section>
     <section class="finale"><div class="eyebrow">the most important part</div><h2>Happy 18th,<br><em>Jinn Darae!</em></h2><p>I hope your birthday is as soft, sweet, and wonderful as you are. Here's to all the beautiful things waiting for you. Love you lots, Daraemoon ♡</p><button class="button" id="wishButton">Send a birthday wish <span aria-hidden="true">♡</span></button></section>
   </main>
   <footer class="footer">made with lots of love, just for Daraemoon ♡</footer>
-  <div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-label="Memory viewer"><div class="modal-inner"><button class="modal-close" id="modalClose" aria-label="Close memory">×</button><div id="modalMedia"></div></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-label="Memory viewer"><div class="modal-inner"><button class="modal-close" id="modalClose" aria-label="Close memory">×</button><div id="modalMedia"></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <svg class="pink-doraemon" viewBox="0 0 100 112" role="img" aria-label="A little pink Doraemon wandering around the page" xmlns="http://www.w3.org/2000/svg">
+    <title>Pink Doraemon</title>
+    <ellipse class="body" cx="50" cy="61" rx="34" ry="39"/>
+    <ellipse class="light" cx="50" cy="68" rx="25" ry="27"/>
+    <circle class="body" cx="50" cy="31" r="27"/>
+    <ellipse class="light" cx="50" cy="37" rx="23" ry="19"/>
+    <ellipse class="eye" cx="42" cy="25" rx="6" ry="9"/><ellipse class="eye" cx="55" cy="25" rx="6" ry="9"/>
+    <circle class="pupil" cx="44" cy="28" r="2"/><circle class="pupil" cx="54" cy="28" r="2"/>
+    <ellipse class="detail" cx="49" cy="36" rx="4" ry="3.5"/><path class="line" d="M49 40v7m-13-3c3 4 7 6 13 6s10-2 13-6M28 37l14 3m-15 5 13 1m32-9-14 3m15 6-14 1"/>
+    <path class="detail" d="M27 58h46v5H27z"/><circle class="detail" cx="50" cy="62" r="6"/><path class="line" d="M50 68v5"/>
+    <ellipse class="light" cx="38" cy="100" rx="12" ry="6"/><ellipse class="light" cx="62" cy="100" rx="12" ry="6"/>
+    <path class="line" d="M17 57l-7-3m7 11H8m75-8 7-3m-7 11h9M34 88l-8 7m40-7 8 7"/>
+  </svg>
   <script src="script.js" defer></script>
 </body>
 </html>
